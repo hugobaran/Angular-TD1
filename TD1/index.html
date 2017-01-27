@@ -24,14 +24,13 @@
 						<button type="button" class="btn btn-primary" ng-click="ctrl.save()">Enregistrer</button>
 						<button type="button" class="btn btn-primary" ng-click="ctrl.delete()">Effacer</button></br></br>
 
-						<div class="alert alert-info">Nombre de caractères restants : {{ctrl.caracRestant}}</div>
+						<div ng-class="{'alert-warning': ctrl.warning,'alert-danger': ctrl.danger}" class="alert alert-info alert-dismissible" >Nombre de caractères restant : {{ctrl.caracRestant}}</div>
 
-						<div class="alert alert-success alert-dismissable" ng-show="ctrl.info" style="margin-top:18px">{{ctrl.info}}</div>
+						<div class="alert alert-success" ng-show="ctrl.info" style="margin-top:18px">{{ctrl.info}}</div>
 				</div>
 		    </div>
 	    </div>
 	</div>
-
 
 </body>
 </html>
