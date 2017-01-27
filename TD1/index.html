@@ -6,7 +6,8 @@
     <title>AppNote</title>
     <script src="../../angular-1.6.1/angular.min.js"></script>
     <script src="../../bootstrap/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" type="text/css"/>
+    <script type="text/javascript" src="app/noteController.js"></script>
 </head>
 <body>
 
@@ -18,28 +19,19 @@
 			    <div class="panel-body">
 			    	<div class="form-group">
 						<label for="ctrl.messageNote">Note :</label>
-						<textarea class="form-control" rows="5" id="messageNote" ng-model="ctrl.messageNote" data-ng-change="ctrl.count()" maxlength="100"></textarea></br>
+						<textarea class="form-control" rows="5" id="messageNote" ng-model="ctrl.messageNote" ng-change="ctrl.count()" maxlength="100"></textarea></br>
 						
-						<button type="button" class="btn btn-primary">Enregistrer</button>
-						<button type="button" class="btn btn-primary">Effacer</button></br></br>
+						<button type="button" class="btn btn-primary" ng-click="ctrl.save()">Enregistrer</button>
+						<button type="button" class="btn btn-primary" ng-click="ctrl.delete()">Effacer</button></br></br>
 
 						<div class="alert alert-info">Nombre de caractères restants : {{ctrl.caracRestant}}</div>
-						<div class="alert alert-warning" ng-model="info">info</div>
-					</div>
+
+						<div class="alert alert-success alert-dismissable" ng-show="ctrl.info" style="margin-top:18px">{{ctrl.info}}</div>
 				</div>
 		    </div>
 	    </div>
 	</div>
 
-<script>
-        angular.module("NoteApp",[]).controller("noteController",function()
-        	{
-        		var self=this;
-        		self.caracRestant = 100;
-    			self.count = function(){
-				self.caracRestant = 100-self.messageNote.length;
-        	}});
-</script>
 
 </body>
 </html>
