@@ -19,13 +19,18 @@ angular.module("NoteApp",[]).controller("noteController",function()
 }
         		};
         		self.delete = function(){
-        			self.messageNote="";
-        			self.caracRestant=100;
-        			self.info="Effacé";
+        			if(self.messageNote!=""){
+	        			self.messageNote="";
+	        			self.caracRestant=100;
+	        			self.info=false;
+        			}
         		};
         		self.save = function(){
-            		self.saved = true;
-            		self.info= "Enregistré";
+        			if(self.messageNote!=""){
+	            		self.saved = true;
+	            		self.info= "note sauvegardée";
+	            		self.success=true;
+	            	}
         		};
 
         });
