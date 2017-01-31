@@ -1,0 +1,1 @@
+var App = angular.module("NoteApp",['ngCookies']); // Création du module; [] -> Dépendances
