@@ -1,0 +1,1 @@
+var serviceApp = angular.module("ServiceApp",[]); // Création du module; [] -> Dépendances
