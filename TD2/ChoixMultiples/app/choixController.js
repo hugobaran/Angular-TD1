@@ -1,5 +1,6 @@
 choixApp.controller('choixController', function(){
 	var self = this;
+    this.step=1;
 
     this.dispoItems = [
         {
@@ -38,5 +39,33 @@ choixApp.controller('choixController', function(){
             "image": "http://cdn.tutorialzine.com/wp-content/uploads/2013/04/service_chooser_form-100x100.jpg"
         }
     ]
+
+    
+    this.selectedDispoItems = [
+
+    ]
+
+    this.includedItems = [
+    ]
+
+    this.selectedIncludedItems = [
+    ]
+
+    self.addToIncluded = function(){
+        angular.forEach(self.selectedDispoItems,function(element){
+            i = self.dispoItems.indexOf(element); 
+            self.includedItems.push(self.dispoItems[i]);
+            self.dispoItems.splice(i,1);
+        });
+    };
+
+    self.addAllToIncluded = function(){
+    };
+
+    self.removeFromIncluded = function(){
+    };
+
+    self.removeAllFromIncluded = function(){
+    };
 
 });

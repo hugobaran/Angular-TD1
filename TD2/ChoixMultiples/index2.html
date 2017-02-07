@@ -24,15 +24,33 @@
 
 				<form id="choixMultiples">
 					<div>
+						<!-- ZONE 1 -->
 						<h1>Sélectionnez vos produits</h1>
 						<div class="form-group">
 							<div class="inline-block">
 								<label>Produits disponibles : 
-									<select title="Double-cliquez pour ajouter" class="form-control" size="10" multiple="multiple" ng-model="ctrl.selectDispoItems">
+									<select title="Double-cliquez pour ajouter" class="form-control" size="10" multiple="multiple" ng-model="ctrl.selectedDispoItems" ng-options="item.title for item in ctrl.dispoItems">
 											<option ng-repeat="item in ctrl.dispoItems" value="{{$index}}">{{item.title}} </option>
 									</select>
 								</label>
 							</div>
+
+							<!-- BOUTONS -->
+                            <div class="inline-block">
+                                <div title="Ajouter" class="btn btn-primary list-btn" ng-click="ctrl.addToIncluded()" ng-disabled="ctrl.selectedDispoItems.length<1" disabled="disabled"><span aria-hidden="true" class="glyphicon glyphicon-step-forward"></span>Add</div>
+                                <div title="Ajouter tous" class="btn btn-primary list-btn" ng-click="ctrl.addAllToIncluded()" ng-disabled="ctrl.dispoItems.length<1"><span aria-hidden="true" class="glyphicon glyphicon-fast-forward"></span>AddAll</div>
+                                <div title="Retirer" class="btn btn-primary list-btn" ng-click="ctrl.removeFromIncluded()" ng-disabled="ctrl.selectedIncludedItems.length<1" disabled="disabled"><span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span>Remove</div> 
+                                <div title="Retirer tous" class="btn btn-primary list-btn" ng-click="ctrl.removeAllFromIncluded()" ng-disabled="ctrl.includedItems.length<1" disabled="disabled"><span aria-hidden="true" class="glyphicon glyphicon-fast-backward"></span>RemoveAll</div>
+                            </div>
+
+                            <!-- ZONE 2 -->
+							<div class="inline-block">
+                                <label>Produits à inclure : 
+                                    <select title="Double-cliquez pour ajouter" class="form-control" size="10" multiple="multiple" ng-model="ctrl.selectedIncludedItems" ng-options="item.title for item in ctrl.includedItems">>
+                                        <option ng-repeat="item in ctrl.includedItems" value="{{$index}}">{{item.title}}</option>
+                                    </select>
+                                </label> 
+                            </div>
 						</div>
 					</div>
 				</form>
