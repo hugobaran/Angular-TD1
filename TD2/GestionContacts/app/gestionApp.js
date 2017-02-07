@@ -1,0 +1,1 @@
+var gestionApp = angular.module("gestionContacts",[]); // Création du module; [] -> Dépendances
