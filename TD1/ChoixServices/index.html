@@ -45,9 +45,29 @@
                     <!-- Format en currency. -->
                     Total: 
                     <span>{{serviceCtrl.totals | currency : "€"}}</span>
-                </div>                
+                </div>
+
+                <div class="promo">
+					<div class="input-group">
+					    <span class="input-group-addon">
+					    	<input ng-model="checkPromo" ng-click="applyCode()" type="checkbox">
+					    </span>
+						<input class="form-control"	ng-model="codePromo" placeholder="Code promo" ng-keyup="applyCode()" >
+					</div>
+				</div>  
+
+				<div class="total ng-hide" ng-show="checkPromo">
+					Remise :
+					<span class="ng-binding">{{serviceCtrl.remise}}</span>
+					<br>
+					Total avec remise :
+					<span class="ng-binding">{{serviceCtrl.totalAvecRemise}}</span>
+				</div>           
             </form>
         </div>
     </div>
 </body>
 </html>
+
+
+

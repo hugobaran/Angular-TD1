@@ -1,10 +1,8 @@
 serviceApp.controller('ServiceController', function($http){
 	var self = this;
-	var self = this;
 	this.cpt = 1;
 	this.totals = 300;
 	this.promoCoche = false;
-	this.promoError = false;
 	this.totalAvecRemise = 0;
 	this.remise = 0;
 
@@ -27,15 +25,23 @@ serviceApp.controller('ServiceController', function($http){
 	        "active":false
 	    }
 	];
+
+	this.promo = [
+	    {
+		    "B22":0.05,
+	  		"AZ":0.01,
+	  		"UBOAT":0.02
+	    }
+	];
 	
-	 self.total = function(){
+	self.total = function(){
     	var somme = 0;
-    	angular.forEach(self.services, function(service, key){
+    	angular.forEach(self.services, function(service){
     		if(service.active)
-    			somme+=service.price;
+    			somme += service.price;
     	});
     	self.totals = somme;
-};
+	};
 	
 	self.toggleActive = function($item){
     	// Test si déjà actif
@@ -48,7 +54,7 @@ serviceApp.controller('ServiceController', function($http){
 		
     	// Compte le nombre de services actifs
     	var cpt = 0;
-    	angular.forEach(this.services, function(value, key){
+    	angular.forEach(this.services, function(value){
     		if(value.active)
     			cpt++;
     	});
