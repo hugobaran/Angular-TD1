@@ -63,6 +63,11 @@ choixApp.controller('choixController', function(){
     };
 
     self.removeFromIncluded = function(){
+        angular.forEach(self.selectedIncludedItems,function(element){
+            i = self.includedItems.indexOf(element); 
+            self.dispoItems.push(self.includedItems[i]);
+            self.includedItems.splice(i,1);
+        });
     };
 
     self.removeAllFromIncluded = function(){
