@@ -1,0 +1,42 @@
+</!DOCTYPE html>
+
+<html lang="en" ng-app="ChoixMultiples">
+	<head>
+		<title>Choix multiples</title>
+		<meta charset="UTF-8">
+
+		<link rel="stylesheet" href="http://angular.kobject.net/css/css.css">
+
+		<script src="../../../angular-1.6.1/angular.min.js"></script>
+    	<link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css" type="text/css"/>
+
+		<script type="text/javascript" src="app/choixApp.js"></script>
+    	<script type="text/javascript" src="app/choixController.js"></script>
+	</head>
+
+	<body ng-app="TD2" ng-controller="choixController as ctrl">
+
+		<div class="container">
+			<div class="panel default">
+			
+			<!-- ngView:  -->
+			<div ng-view="" class="toggle ng-scope">	
+
+				<form id="choixMultiples">
+					<div>
+						<h1>Sélectionnez vos produits</h1>
+						<div class="form-group">
+							<div class="inline-block">
+								<label>Produits disponibles : 
+									<select title="Double-cliquez pour ajouter" class="form-control" size="10" multiple="multiple" ng-model="ctrl.selectDispoItems">
+											<option ng-repeat="item in ctrl.dispoItems" value="{{$index}}">{{item.title}} </option>
+									</select>
+								</label>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
