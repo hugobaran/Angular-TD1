@@ -1,4 +1,4 @@
-myApp.controller('choixController', function(){
+choixApp.controller('choixController', function(){
 	var self = this;
 
     this.dispoItems = [

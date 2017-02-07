@@ -1,1 +1,1 @@
-var myApp = angular.module("myApp",[]); // Création du module; [] -> Dépendances
+var choixApp = angular.module("choixMultiples",[]); // Création du module; [] -> Dépendances
