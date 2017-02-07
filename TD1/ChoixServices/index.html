@@ -25,16 +25,16 @@
                     <span>Choisissez les éléments à inclure</span>
                     <p>
                         <!-- NB SELECTION -->
-                        <ng-pluralize count="count" when="{0:'Aucun service sélectionné',
-                                                        1:'1 service sélectionné',
-                                                        'other':'{} services sélectionnés'}">
+                        <ng-pluralize count="serviceCtrl.cpt" when="{0:'Aucun service sélectionné',
+                                                                     1:'1 service sélectionné',
+                                                                    'other':'{{serviceCtrl.cpt}} services sélectionnés'}">
                         </ng-pluralize>
                     </p>
                 </div>
 
                 <!-- LISTE SERVICES -->
                 <ul>
-                    <li data-ng-repeat="service in serviceCtrl.services" data-ng-class="{active: service.active}" data-ng-click="serviceCtrl.toggleActive($index)">
+                    <li ng-repeat="service in serviceCtrl.services" ng-class="{active: service.active}" ng-click="serviceCtrl.toggleActive($index)">
                         {{service.name}}
                         <span class="ng-binding">{{service.price | currency : "€"}}</span>
                     </li>

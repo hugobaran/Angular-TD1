@@ -44,7 +44,7 @@ serviceApp.controller('ServiceController', function($http){
     	else
     		self.services[$item].active = false;
 
-		this.total();
+		self.total();
 		
     	// Compte le nombre de services actifs
     	var cpt = 0;
@@ -52,6 +52,6 @@ serviceApp.controller('ServiceController', function($http){
     		if(value.active)
     			cpt++;
     	});
-    	this.cpt = cpt;
+    	self.cpt = cpt;
 };
 });
