@@ -68,7 +68,12 @@
 					<div ng-show="ctrl.step==2" class="ng-hide">
                         <h1>Votre choix</h1>
                         <ul>
-                            <!-- ngRepeat: item in includedItems -->
+                            <li ng-repeat="item in ctrl.includedItems">
+								<a href="{{item.url}}">
+									<img ng-src="{{item.image}}">
+								</a>
+								{{item.title}}
+							</li>
                         </ul>
                         <div>
                             <div class="btn btn-primary" style="width:98%;text-align: right;margin-top:5px" ng-click="ctrl.step=1">
