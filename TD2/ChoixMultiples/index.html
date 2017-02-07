@@ -20,16 +20,17 @@
 			<div class="panel default">
 			
 			<!-- ngView:  -->
-			<div ng-view="" class="toggle ng-scope">	
+			<div ng-view="" class="toggle ng-scope" >	
 
+				<!-- VUE NUMERO 1 -->
 				<form id="choixMultiples">
-					<div>
+					<div ng-show="ctrl.step==1" class="ng-hide" ng-show="ctrl.step==1">
 						<!-- ZONE 1 -->
 						<h1>Sélectionnez vos produits</h1>
 						<div class="form-group">
 							<div class="inline-block">
 								<label>Produits disponibles : 
-									<select title="Double-cliquez pour ajouter" class="form-control" size="10" multiple="multiple" ng-model="ctrl.selectedDispoItems" ng-options="item.title for item in ctrl.dispoItems">
+									<select title="Double-cliquez pour ajouter" class="form-control" size="10" multiple="multiple" ng-model="ctrl.selectedDispoItems" ng-options="item.title for item in ctrl.dispoItems" ng-dblclick="ctrl.addToIncluded()">
 											<option ng-repeat="item in ctrl.dispoItems" value="{{$index}}">{{item.title}} </option>
 									</select>
 								</label>
@@ -46,13 +47,37 @@
                             <!-- ZONE 2 -->
 							<div class="inline-block">
                                 <label>Produits à inclure : 
-                                    <select title="Double-cliquez pour ajouter" class="form-control" size="10" multiple="multiple" ng-model="ctrl.selectedIncludedItems" ng-options="item.title for item in ctrl.includedItems">>
+                                    <select title="Double-cliquez pour ajouter" class="form-control" size="10" multiple="multiple" ng-model="ctrl.selectedIncludedItems" ng-options="item.title for item in ctrl.includedItems" ng-dblclick="ctrl.removeFromIncluded()">>
                                         <option ng-repeat="item in ctrl.includedItems" value="{{$index}}">{{item.title}}</option>
                                     </select>
                                 </label> 
                             </div>
+
+                            <span>{{ctrl.nbSelect}} produit(s) sélectionné(s)</span>
+
+                            <div>
+	                            <div class="btn btn-primary" style="width:98%;text-align: right" ng-disabled="ctrl.includedItems.length<1" ng-disabled="disabled" ng-click="ctrl.step=2" >
+	                                <span>Etape suivante</span>
+	                                <span class="glyphicon glyphicon-circle-arrow-right"></span>
+	                            </div>
+                        	</div>
 						</div>
 					</div>
+
+					<!-- VUE NUMERO 2 -->
+					<div ng-show="ctrl.step==2" class="ng-hide">
+                        <h1>Votre choix</h1>
+                        <ul>
+                            <!-- ngRepeat: item in includedItems -->
+                        </ul>
+                        <div>
+                            <div class="btn btn-primary" style="width:98%;text-align: right;margin-top:5px" ng-click="ctrl.step=1">
+                                <span aria-hidden="true" class="glyphicon glyphicon-circle-arrow-left"></span>
+                                <span>Retour au choix précédent</span>
+                            </div>
+                        </div>
+                    </div>
+
 				</form>
 			</div>
 		</div>

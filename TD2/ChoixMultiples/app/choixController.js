@@ -1,6 +1,7 @@
 choixApp.controller('choixController', function(){
 	var self = this;
     this.step=1;
+    this.nbSelect=0;
 
     this.dispoItems = [
         {
@@ -40,26 +41,28 @@ choixApp.controller('choixController', function(){
         }
     ]
 
-    
-    this.selectedDispoItems = [
+    //Tableaux pour accueillir les éléments au fur et à mesure des changements
+    this.selectedDispoItems = []
 
-    ]
+    this.includedItems = []
 
-    this.includedItems = [
-    ]
-
-    this.selectedIncludedItems = [
-    ]
+    this.selectedIncludedItems = []
 
     self.addToIncluded = function(){
         angular.forEach(self.selectedDispoItems,function(element){
             i = self.dispoItems.indexOf(element); 
             self.includedItems.push(self.dispoItems[i]);
             self.dispoItems.splice(i,1);
+            self.nbSelect++;
         });
     };
 
     self.addAllToIncluded = function(){
+        while(self.dispoItems.length!=0){
+            self.includedItems.push(self.dispoItems[0]);
+            self.dispoItems.splice(0,1); //supprime le 1er une fois
+            self.nbSelect++;
+        };
     };
 
     self.removeFromIncluded = function(){
@@ -67,10 +70,16 @@ choixApp.controller('choixController', function(){
             i = self.includedItems.indexOf(element); 
             self.dispoItems.push(self.includedItems[i]);
             self.includedItems.splice(i,1);
+            self.nbSelect--;
         });
     };
 
     self.removeAllFromIncluded = function(){
+        while(self.includedItems.length!=0){
+            self.dispoItems.push(self.includedItems[0]);
+            self.includedItems.splice(0,1); //supprime le 1er une fois
+            self.nbSelect--;
+        };
     };
 
 });
