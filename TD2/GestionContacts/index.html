@@ -1,20 +1,71 @@
-</!DOCTYPE html>
+	</!DOCTYPE html>
 
-<html lang="en" ng-app="gestionContacts">
-	<head>
-		<title>Choix multiples</title>
-		<meta charset="UTF-8">
+	<html lang="en" ng-app="gestionContacts">
+		<head>
+			<title>Gestion Contacts</title>
+			<meta charset="UTF-8">
 
-		<link rel="stylesheet" href="http://angular.kobject.net/css/css.css">
+			<link rel="stylesheet" href="http://angular.kobject.net/css/css.css">
 
-		<script src="../../../angular-1.6.1/angular.min.js"></script>
-    	<link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css" type="text/css"/>
+			<script src="../../../angular-1.6.1/angular.min.js"></script>
+	    	<link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css" type="text/css"/>
 
-		<script type="text/javascript" src="app/gestionApp.js"></script>
-    	<script type="text/javascript" src="app/gestionController.js"></script>
-	</head>
+			<script type="text/javascript" src="app/gestionApp.js"></script>
+	    	<script type="text/javascript" src="app/gestionController.js"></script>
+		</head>
 
-	<body ng-app="TD2" ng-controller="choixController as ctrl">
+		<body ng-app="TD2" ng-controller="gestionController as ctrl">
+		
+			<div ng-view="" class="toggle ng-scope">
+				<div id="contact" class="container ng-scope">
+					<div class="panel panel-primary">
+						<div class="panel-heading">Contacts</div>
+							<div class="panel-body">
+						
+								<table class="table table-striped" id="lstContact">
+									<tbody><!-- ngRepeat: contact in contacts |NotDeletedFilter |filter:q as results -->
 
-	</body>
-</html>
+										<tr ng-repeat="contact in ctrl.contacts">
+											<td>{{contact.nom}} </td>
+											<td>{{contact.prenom}} </td>
+											<td>{{contact.mail}} </td>
+											<td>
+												<a>
+													<span class="glyphicon glyphicon-edit"></span>
+												</a>
+												<a>
+													<span class="glyphicon glyphicon-remove-circle"></span>
+												</a>
+											</td>
+										</tr>
+
+										<tr>
+											<td colspan="4">
+												<a id="add" href="" data-ng-click="ctrl.toAdd()" class="btn btn-primary">Ajouter...</a>
+											</td>
+										</tr>
+																						
+									</tbody>
+								</table>
+							</div>
+
+							<frm-contact-elem>	
+								<fieldset data-ng-show="ctrl.edit==true" class="container form-group form-inline ng-hide">
+									<legend class="ng-binding">Ajouter un contact</legend>
+									<form name="frmContact" data-ng-submit="frmContact.$valid &amp;&amp; update()" novalidate="" class="ng-pristine ng-invalid ng-invalid-required ng-valid-email">
+										<input class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" type="text" data-ng-model="tmpContact.nom" placeholder="Entrez un nom..." required="">
+										<input class="form-control ng-pristine ng-untouched ng-valid" type="text" data-ng-model="tmpContact.prenom" placeholder="Prénom...">
+										<input class="form-control ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required" type="email" data-ng-model="tmpContact.email" placeholder="Adresse email..." required="">
+										<input type="submit" value="Valider" class="btn btn-primary">
+										<input type="button" value="Annuler" class="btn btn-primary" data-ng-click="ctrl.edit=false" >
+									</form>
+								</fieldset>
+							</frm-contact-elem>
+					</div>
+				</div>
+			</div>
+
+			
+
+		</body>
+	</html>
