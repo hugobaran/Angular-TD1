@@ -1,0 +1,1 @@
+var currencyApp = angular.module("currencyApp",[]); // Création du module; [] -> Dépendances

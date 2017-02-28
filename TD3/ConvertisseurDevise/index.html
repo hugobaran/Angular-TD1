@@ -1,0 +1,46 @@
+</!DOCTYPE html>
+
+<html lang="en" ng-app="currencyApp">
+	<head>
+		<title>Convertisseur de devise</title>
+		<meta charset="UTF-8">
+
+		<link rel="stylesheet" href="http://angular.kobject.net/css/css.css">
+
+		<script src="../../../angular-1.6.1/angular.min.js"></script>
+    	<link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css" type="text/css"/>
+
+		<script type="text/javascript" src="app/deviseApp.js"></script>
+    	<script type="text/javascript" src="app/deviseController.js"></script>
+	</head>
+
+	<body ng-app="TD3" ng-controller="currencyController as ctrl">
+	
+	<div class="container">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				Convertisseur de devises
+			</div>
+			<div class="panel-body">
+				<form class="form-group form-inline">
+					<input type="text" class="form-control" size="5" data-ng-model="calcuCtrl.what">
+						<select class="form-control"></select>
+						<a href="#">↔</a>
+						<select class="form-control"></select>
+						<input type="button" value="Convertir" class="btn btn-primary">
+						<input type="text" class="form-control" size="5">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" data-ng-model="calcuCtrl.historique">Historique
+							</label>
+						</div>
+				</form>
+
+				
+			</div>
+		</div>
+	</div>
+		
+
+	</body>
+</html>
