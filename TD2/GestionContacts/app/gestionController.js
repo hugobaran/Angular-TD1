@@ -39,6 +39,9 @@ gestionApp.controller('gestionController', function(){
     ];
 
 	self.toUpdate = function(contact){
+		self.edit=true;
+		console.log(contact);
+		self.tmpContact = contact;
     };
 
     self.toAdd = function(){
@@ -46,16 +49,16 @@ gestionApp.controller('gestionController', function(){
     };
 
     self.add = function(){
-
+    	console.log(self.tmpContact);
+    	self.contacts.push(self.tmpContact);
     };
 
     self.update = function(){
     };
 
     self.delete = function(contact){
-    	alert(contact)
-    	i = self.contacts.indexOf(contact);
-    	alert('i')
+    	console.log(contact);
+    	//i = self.contacts.indexOf(contact);
         //self.contacts[i].deleted = true;
     };
 

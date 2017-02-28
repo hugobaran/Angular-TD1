@@ -1,0 +1,1 @@
+var deviseApp = angular.module("deviseConversion",[]); // Création du module; [] -> Dépendances
