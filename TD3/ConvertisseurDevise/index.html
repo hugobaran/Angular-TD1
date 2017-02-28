@@ -23,24 +23,20 @@
 			</div>
 			<div class="panel-body">
 				<form class="form-group form-inline">
-					<input type="text" class="form-control" size="5" data-ng-model="calcuCtrl.what">
-						<select class="form-control"></select>
-						<a href="#">↔</a>
-						<select class="form-control"></select>
+					<input type="text" class="form-control" size="5">
+						<select class="form-control" ng-options="v.code as (v.code + ' - ' + v.name) for (k,v) in ctrl.currencies" data-ng-model="ctrl.from"></select>
+						<a href="#" ng-click="ctrl.swap()">↔</a>
+						<select class="form-control" ng-options="v.code as (v.code + ' - ' + v.name) for (k,v) in ctrl.currencies" data-ng-model="ctrl.to"></select>
 						<input type="button" value="Convertir" class="btn btn-primary">
 						<input type="text" class="form-control" size="5">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" data-ng-model="calcuCtrl.historique">Historique
+								<input type="checkbox">Historique
 							</label>
 						</div>
-				</form>
-
-				
+				</form>				
 			</div>
 		</div>
 	</div>
-		
-
 	</body>
 </html>
