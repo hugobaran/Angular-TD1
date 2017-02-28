@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="http://angular.kobject.net/css/css.css">
 
 		<script src="../../../angular-1.6.1/angular.min.js"></script>
+		<script src="../../../bootstrap/js/jquery.min.js"></script>
     	<link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css" type="text/css"/>
 
 		<script type="text/javascript" src="app/deviseApp.js"></script>
@@ -23,19 +24,51 @@
 			</div>
 			<div class="panel-body">
 				<form class="form-group form-inline">
-					<input type="text" class="form-control" size="5">
+					<input type="text" class="form-control" size="5" ng-model="ctrl.what">
 						<select class="form-control" ng-options="v.code as (v.code + ' - ' + v.name) for (k,v) in ctrl.currencies" data-ng-model="ctrl.from"></select>
 						<a href="#" ng-click="ctrl.swap()">↔</a>
 						<select class="form-control" ng-options="v.code as (v.code + ' - ' + v.name) for (k,v) in ctrl.currencies" data-ng-model="ctrl.to"></select>
-						<input type="button" value="Convertir" class="btn btn-primary">
-						<input type="text" class="form-control" size="5">
-						<div class="checkbox">
+						<input type="button" value="Convertir" ng-click="ctrl.getResult()" class="btn btn-primary">
+						<input type="text" class="form-control" readonly="readonly" size="5" ng-model="ctrl.result">
+						<div class="checkbox" ng-model="ctrl.historique">
 							<label>
 								<input type="checkbox">Historique
 							</label>
 						</div>
-				</form>				
+				</form>		
 			</div>
+			<div class="container-fluid" >
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table class="table table-striped" id="historique">
+                            <tbody>
+                                <tr>
+                                    <th class="text-center">De</th>	
+                                    <th class="text-center">En</th>
+                                    <th class="text-center">Tx</th>
+                                    <th class="text-center">Montant</th>
+                                    <th class="text-center">Date</th>
+                                    <th class="text-center">Delta</th>
+                                    <th></th>
+                                </tr>
+                                <td colspan="7">
+	                                <form class="form-inline">
+	                                    <div class="input-group">
+	                                    <span class="input-group-addon">
+	                                        <input type="checkbox" title="Auto-refresh">
+	                                    </span>
+	                                        <input type="number" class="form-control">
+	                                        <span class="input-group-btn">
+	                                    <button class="btn btn-primary"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+	                                    </span>
+	                                    </div>
+	                                </form>
+	                            </td>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 		</div>
 	</div>
 	</body>
