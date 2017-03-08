@@ -16,60 +16,83 @@
 	</head>
 
 	<body ng-app="TD3" ng-controller="currencyController as ctrl">
-	
-	<div class="container">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				Convertisseur de devises
-			</div>
-			<div class="panel-body">
-				<form class="form-group form-inline">
-					<input type="text" class="form-control" size="5" ng-model="ctrl.what">
-						<select class="form-control" ng-options="v.code as (v.code + ' - ' + v.name) for (k,v) in ctrl.currencies" data-ng-model="ctrl.from"></select>
-						<a href="#" ng-click="ctrl.swap()">↔</a>
-						<select class="form-control" ng-options="v.code as (v.code + ' - ' + v.name) for (k,v) in ctrl.currencies" data-ng-model="ctrl.to"></select>
-						<input type="button" value="Convertir" ng-click="ctrl.getResult()" class="btn btn-primary">
-						<input type="text" class="form-control" readonly="readonly" size="5" ng-model="ctrl.result">
-						<div class="checkbox" ng-model="ctrl.historique">
-							<label>
-								<input type="checkbox">Historique
-							</label>
-						</div>
-				</form>		
-			</div>
-			<div class="container-fluid" >
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <table class="table table-striped" id="historique">
-                            <tbody>
-                                <tr>
-                                    <th class="text-center">De</th>	
-                                    <th class="text-center">En</th>
-                                    <th class="text-center">Tx</th>
-                                    <th class="text-center">Montant</th>
-                                    <th class="text-center">Date</th>
-                                    <th class="text-center">Delta</th>
-                                    <th></th>
-                                </tr>
-                                <td colspan="7">
-	                                <form class="form-inline">
-	                                    <div class="input-group">
-	                                    <span class="input-group-addon">
-	                                        <input type="checkbox" title="Auto-refresh">
-	                                    </span>
-	                                        <input type="number" class="form-control">
-	                                        <span class="input-group-btn">
-	                                    <button class="btn btn-primary"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
-	                                    </span>
-	                                    </div>
-	                                </form>
-	                            </td>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-		</div>
-	</div>
+	    <div class="container">
+	        <div class="toggle">
+	            <div class="container">
+	                <div class="panel panel-primary" ngcloak="">
+	                    <div class="panel-heading">Ex 3 : Currency Application</div>
+	                    <div class="panel-body">
+	                        <form class="form-group form-inline">
+	                            <input type="text" class="form-control" size="5" ng-model="ctrl.what">
+	                            <select class="form-control" ng-options="v.code as (v.code + ' - ' + v.name) for (k,v) in ctrl.currencies" ng-model="ctrl.from"></select>
+	                            <a href="#" ng-click="ctrl.swap()">↔</a>
+	                            <select class="form-control" ng-options="v.code as (v.code + ' - ' + v.name) for (k,v) in ctrl.currencies" ng-model="ctrl.to"></select>
+	                            <input type="button" value="Convertir" ng-click="ctrl.getResult()" class="btn btn-primary">
+	                            <input type="text" class="form-control" readonly="readonly" size="5" ng-model="ctrl.result">
+	                            <div class="checkbox">
+	                            	<label>
+		                            	<input type="checkbox" ng-model="ctrl.histo">
+		                            	Historique
+	                            	</label>
+	                            </div>
+	                        </form>
+	                    </div>
+	                    <div class="container-fluid" ng-show="ctrl.length()>0 && ctrl.histo">
+	                        <div class="panel panel-default">
+	                            <div class="panel-body">
+	                                <table class="table table-striped" id="lstHisto">
+	                                    <tbody>
+	                                        <tr>
+	                                            <th>De</th>
+	                                            <th>En</th>
+	                                            <th class="text-center">Tx</th>
+	                                            <th class="text-center">Montant</th>
+	                                            <th class="text-center">Date</th>
+	                                            <th class="text-center">Delta</th>
+	                                            <th></th>
+	                                        </tr>
+	                                        <tr ng-repeat="conversion in ctrl.historique" ng-class="{'info':conversion.update}">
+	                                            <td class="ng-binding">{{conversion.from}}</td>
+	                                            <td class="ng-binding">{{conversion.to}}</td>
+	                                            <td class="text-center ng-binding">{{conversion.rate}}</td>
+	                                            <td class="text-center ng-binding">{{conversion.amount()}}</td>
+	                                            <td class="text-center ng-binding">{{conversion.date | date:'dd/MM/yyyy h:mm:ss'}}</td>
+	                                            <td class="text-center ng-binding">{{conversion.delta}}</td>
+	                                            <td>
+	                                                <img src="http://preloaders.net/preloaders/716/Equalizer.gif" ng-show="conversion.update" class="ng-hide">
+	                                                <button class="btn btn-info btn-xs" ng-click="ctrl.updateHisto(conversion)" title="Rafraîchir">
+	                                                	<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+	                                                </button>
+	                                                <button class="btn btn-danger btn-xs" ng-click="ctrl.deleteHisto(conversion)" title="Supprimer">
+	                                                	<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+	                                                </button>
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td colspan="7">
+	                                                <form class="form-inline">
+	                                                    <div class="input-group">
+	                                                        <span class="input-group-addon">
+	                                                            <input type="checkbox" ng-model="ctrl.isAutoRefresh" ng-change title="Auto-refresh">
+	                                                        </span>
+	                                                        <input type="number" class="form-control" style="" ng-model="ctrl.refreshTime">
+	                                                        <span class="input-group-btn">
+	                                                            <button ng-disabled="!ctrl.isAutoRefresh" class="btn btn-primary">
+	                                                                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+	                                                            </button>
+	                                                        </span>
+	                                                    </div>
+	                                                </form>
+	                                            </td>
+	                                        </tr>
+	                                    </tbody>
+	                                </table>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
 	</body>
 </html>
