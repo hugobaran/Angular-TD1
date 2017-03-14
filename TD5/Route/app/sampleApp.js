@@ -1,0 +1,1 @@
+var sampleApp = angular.module("sampleApp", ['ngRoute']); // Création du module; [] -> Dépendances1
