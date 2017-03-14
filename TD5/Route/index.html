@@ -3,7 +3,7 @@
 <html lang="en" ng-app="sampleApp">
 	<head>
 		<title>Routes</title>
-
+		<base href="/angular-tds/TD5/Route/"/>
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -19,11 +19,11 @@
 	<body ng-app="TD4" ng-controller="sampleController as ctrl">
 		
 		<div class="container">
-			<a href="#/route1">Route 1</a><br/>
+			<a href="route1">Route 1</a><br/>
 			<!--<a href="#/route2">Route 2</a><br/>
 			<a href="#/route2/Smith">Route 2</a><br/>-->
-			<a href="#/route2/Smith?prenom=John">Route 2</a><br/>
-			<a href="#/route3">Route inexistante</a><br/>
+			<a href="route2/Smith?prenom=John">Route 2</a><br/>
+			<a href="route3">Route inexistante</a><br/>
 			<div ng-view></div>
 		</div>
 

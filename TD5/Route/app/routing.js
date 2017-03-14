@@ -1,5 +1,5 @@
-angular.module("sampleApp").config(['$routeProvider',
-       function($routeProvider) {
+angular.module("sampleApp").config(['$routeProvider', '$locationProvider',
+       function($routeProvider, $locationProvider) {
            $routeProvider.
                when('/route1', {
                    templateUrl: 'views/route1-template.html',
@@ -13,4 +13,7 @@ angular.module("sampleApp").config(['$routeProvider',
                }).otherwise({
                 redirectTo: '/route1'
             });
+           if(window.history && window.history.pushState){
+                $locationProvider.html5Mode(true);
+              }
        }]);
