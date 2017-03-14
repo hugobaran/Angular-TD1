@@ -6,9 +6,11 @@ angular.module("sampleApp").config(['$routeProvider',
                    controller: 'sampleController',
                    controllerAs: 'rtCtrl1'
                }).
-               when('/route2', {
+               when('/route2/:nom', {
                    templateUrl: 'views/route2-template.html',
                    controller: 'sampleController',
                    controllerAs: 'rtCtrl2'
-               });
+               }).otherwise({
+                redirectTo: '/route1'
+            });
        }]);
