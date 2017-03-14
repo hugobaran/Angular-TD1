@@ -1,0 +1,1 @@
+var calculatriceApp = angular.module("calculatriceApp",[]); // Création du module; [] -> Dépendances
