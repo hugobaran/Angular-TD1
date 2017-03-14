@@ -17,3 +17,10 @@ angular.module("sampleApp").config(['$routeProvider', '$locationProvider',
                 $locationProvider.html5Mode(true);
               }
        }]);
+
+
+angular.module("sampleApp").factory("code", function() {
+    return {
+        value:"noCode"
+    }
+})
